@@ -11,9 +11,12 @@ namespace ConsoleApp.Services
     {
         private readonly DateTime _currentDateTime;
 
-        public PaymentDateCalculator(DateTime dateTime)
+        private readonly IEnumerable<Holiday> _holidays;
+
+        public PaymentDateCalculator(DateTime dateTime, List<Holiday> holidays = null)
         {
             _currentDateTime = dateTime;
+            _holidays = holidays ?? new List<Holiday>();
         }
 
         public DateTime CalculateNextSalaryDate(SalaryDateCalculation salaryDateCalculation)
@@ -86,11 +89,13 @@ namespace ConsoleApp.Services
             return GetXDay(lastXDayOfMonth).Last(r => (int)r.DayOfWeek == day);
         }
 
-        private List<DateTime> GetWorkingDayOfMonth(int year, int month)
+        private IEnumerable<DateTime> GetWorkingDayOfMonth(int year, int month)
         {
             return Enumerable.Range(1, DateTime.DaysInMonth(year, month))
                 .Select(day => new DateTime(year, month, day))
-                .Where(r => r.DayOfWeek != DayOfWeek.Saturday && r.DayOfWeek != DayOfWeek.Sunday).ToList();
+                .Where(r => r.DayOfWeek != DayOfWeek.Saturday && r.DayOfWeek != DayOfWeek.Sunday)
+                .Where(r => !GetHolidayDates(year).Contains(r))
+                .ToList();
         }
 
         private IEnumerable<DateTime> GetXDay(DateTime dateTime)
@@ -105,6 +110,18 @@ namespace ConsoleApp.Services
             {
                 dateTime
             };
+        }
+
+        private IEnumerable<DateTime> GetHolidayDates(int year)
+        {
+            var holidays = new List<DateTime>();
+
+            foreach (var holiday in _holidays)
+            {
+                holidays.Add(new DateTime(year, holiday.Month, holiday.Day));
+            }
+
+            return holidays;
         }
     }
 }

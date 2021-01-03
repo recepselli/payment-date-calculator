@@ -114,14 +114,7 @@ namespace ConsoleApp.Services
 
         private IEnumerable<DateTime> GetHolidayDates(int year)
         {
-            var holidays = new List<DateTime>();
-
-            foreach (var holiday in _holidays)
-            {
-                holidays.Add(new DateTime(year, holiday.Month, holiday.Day));
-            }
-
-            return holidays;
+            return _holidays.Select(r => new DateTime(year, r.Month, r.Day));
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Xunit;
 using FluentAssertions;
 using ConsoleApp.Services;
@@ -18,9 +19,16 @@ namespace ConsoleApp.UnitTests.Services
          MemberData(nameof(TestData.FirstXDayData), MemberType = typeof(TestData)),
          MemberData(nameof(TestData.LastXDayData), MemberType = typeof(TestData))
         ]
-        public void CalculateNextSalaryDate(DateTime currentDate, Enums.SalaryFrequency salaryFrequency, int day, DateTime expectedDate)
+        public void Should_Pass_All_TestData_CalculateNextSalaryDate
+        (
+            DateTime currentDate,
+            List<Holiday> holidays,
+            Enums.SalaryFrequency salaryFrequency,
+            int day,
+            DateTime expectedDate
+        )
         {
-            var paymentDateCalculator = new PaymentDateCalculator(currentDate);
+            var paymentDateCalculator = new PaymentDateCalculator(currentDate, holidays);
 
             var nextSalaryPaymentDate = paymentDateCalculator.CalculateNextSalaryDate(new SalaryDateCalculation
             {

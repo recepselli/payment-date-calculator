@@ -43,11 +43,10 @@ namespace ConsoleApp.Services
             if (_currentDateTime.Day > day && _currentDateTime.Month == 12)
                 return new DateTime(_currentDateTime.Year + 1, 1, day);
 
-            else if (_currentDateTime.Day > day)
+            if (_currentDateTime.Day > day)
                 return new DateTime(_currentDateTime.Year, _currentDateTime.Month + 1, day);
 
-            else
-                return new DateTime(_currentDateTime.Year, _currentDateTime.Month, day);
+            return new DateTime(_currentDateTime.Year, _currentDateTime.Month, day);
         }
 
         private DateTime GetFirstWorkingDayOfMonth()
@@ -103,7 +102,7 @@ namespace ConsoleApp.Services
             if (_currentDateTime.Date >= dateTime.Date && _currentDateTime.Month == 12)
                 return GetWorkingDayOfMonth(_currentDateTime.Year + 1, 1);
 
-            else if (_currentDateTime.Date >= dateTime.Date)
+            if (_currentDateTime.Date >= dateTime.Date)
                 return GetWorkingDayOfMonth(_currentDateTime.Year, _currentDateTime.Month + 1);
 
             return new List<DateTime>

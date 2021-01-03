@@ -87,11 +87,10 @@ namespace ConsoleApp.Services
 
         private IEnumerable<DateTime> GetWorkingDayOfMonth(int year, int month)
         {
-            return Enumerable.Range(1, DateTime.DaysInMonth(year, month))
+            return Enumerable
+                .Range(1, DateTime.DaysInMonth(year, month))
                 .Select(day => new DateTime(year, month, day))
-                .Where(r => r.DayOfWeek != DayOfWeek.Saturday && r.DayOfWeek != DayOfWeek.Sunday)
-                .Where(r => !GetHolidayDates(year).Contains(r))
-                .ToList();
+                .Where(r => r.DayOfWeek != DayOfWeek.Saturday && r.DayOfWeek != DayOfWeek.Sunday && !GetHolidayDates(year).Contains(r));
         }
 
         private IEnumerable<DateTime> GetXDay(DateTime dateTime)

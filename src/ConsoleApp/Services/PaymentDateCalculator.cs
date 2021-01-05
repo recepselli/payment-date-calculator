@@ -37,7 +37,7 @@ namespace ConsoleApp.Services
         {
             int lastDayOfMonth = DateTime.DaysInMonth(_currentDateTime.Year, _currentDateTime.Month);
 
-            GuardValueOfDay(max: lastDayOfMonth, day: day);
+            CheckDay(max: lastDayOfMonth, day: day);
 
             if (_currentDateTime.Day > day && _currentDateTime.Month == 12)
                 return new DateTime(_currentDateTime.Year + 1, 1, day);
@@ -69,7 +69,7 @@ namespace ConsoleApp.Services
 
         private DateTime GetFirstXDay(int day)
         {
-            GuardValueOfDay(day: day);
+            CheckDay(day: day);
 
             var firstXDayOfMonth = GetWorkingDayOfMonth(_currentDateTime.Year, _currentDateTime.Month).First(r => (int)r.DayOfWeek == day);
 
@@ -78,7 +78,7 @@ namespace ConsoleApp.Services
 
         private DateTime GetLastXDay(int day)
         {
-            GuardValueOfDay(day: day);
+            CheckDay(day: day);
 
             var lastXDayOfMonth = GetWorkingDayOfMonth(_currentDateTime.Year, _currentDateTime.Month).Last(r => (int)r.DayOfWeek == day);
 
@@ -112,7 +112,7 @@ namespace ConsoleApp.Services
             return _holidays.Select(r => new DateTime(year, r.Month, r.Day));
         }
 
-        private void GuardValueOfDay(int min = 0, int max = 5, int day = 0)
+        private void CheckDay(int min = 0, int max = 5, int day = 0)
         {
             if (day <= min || day > max)
                 throw new ArgumentOutOfRangeException(nameof(day), day, $"Day must be bigger than {min} and smaller than {max}.");

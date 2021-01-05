@@ -20,31 +20,36 @@ namespace ConsoleApp.UnitTests.Helpers
             new object[] {new DateTime(2017, 9, 21), GetHolidays() ,Enums.SalaryFrequency.LastXDay, 5, new DateTime(2017, 9, 29)},
         };
 
-        public static readonly object[][] SpecificDayOfMonthData = {
+        public static readonly object[][] SpecificDayOfMonthData =
+        {
             new object[] {new DateTime(2017, 12, 21), GetHolidays(), Enums.SalaryFrequency.SpecificDayOfMonth, 5, new DateTime(2018, 1, 5)},
             new object[] {new DateTime(2017, 7, 20), GetHolidays(), Enums.SalaryFrequency.SpecificDayOfMonth, 14, new DateTime(2017, 8, 14)},
             new object[] {new DateTime(2017, 7, 8), GetHolidays(), Enums.SalaryFrequency.SpecificDayOfMonth, 12, new DateTime(2017, 7, 12)},
         };
 
-        public static readonly object[][] FirstWorkingDayOfMonthData = {
+        public static readonly object[][] FirstWorkingDayOfMonthData =
+        {
             new object[] {new DateTime(2017, 6, 8), GetHolidays(), Enums.SalaryFrequency.FirstWorkingDayOfMonth, 0, new DateTime(2017, 7, 3)},
             new object[] {new DateTime(2017, 7, 31), GetHolidays(), Enums.SalaryFrequency.FirstWorkingDayOfMonth, 0, new DateTime(2017, 8, 1)},
             new object[] {new DateTime(2020, 12, 31), GetHolidays(), Enums.SalaryFrequency.FirstWorkingDayOfMonth, 0, new DateTime(2021, 1, 4)}
         };
 
-        public static readonly object[][] DayBeforeLastWorkingDayData = {
+        public static readonly object[][] DayBeforeLastWorkingDayData =
+        {
             new object[] {new DateTime(2017, 6, 8), GetHolidays(), Enums.SalaryFrequency.DayBeforeLastWorkingDay, 0, new DateTime(2017, 6, 29)},
             new object[] {new DateTime(2017, 9, 20), GetHolidays(), Enums.SalaryFrequency.DayBeforeLastWorkingDay, 0, new DateTime(2017, 9, 27)},
             new object[] {new DateTime(2020, 12, 31), GetHolidays(), Enums.SalaryFrequency.DayBeforeLastWorkingDay, 0, new DateTime(2020, 12, 30)}
         };
 
-        public static readonly object[][] LastWorkingDayOfMonthData = {
+        public static readonly object[][] LastWorkingDayOfMonthData =
+        {
             new object[] {new DateTime(2017, 6, 8), GetHolidays(), Enums.SalaryFrequency.LastWorkingDayOfMonth, 0, new DateTime(2017, 6, 30)},
             new object[] {new DateTime(2017, 7, 31), GetHolidays(), Enums.SalaryFrequency.LastWorkingDayOfMonth, 0, new DateTime(2017, 8, 31)},
             new object[] {new DateTime(2020, 12, 31), GetHolidays(), Enums.SalaryFrequency.LastWorkingDayOfMonth, 0, new DateTime(2021, 1, 29)}
         };
 
-        public static readonly object[][] ArgumentOutOfRangeExceptionData = {
+        public static readonly object[][] ArgumentOutOfRangeExceptionData =
+        {
             new object[] {DateTime.Now, Enums.SalaryFrequency.FirstXDay, 0, 5},
             new object[] {DateTime.Now, Enums.SalaryFrequency.FirstXDay, 6, 5},
 

@@ -13,7 +13,7 @@ namespace ConsoleApp.Services
 
         private readonly IEnumerable<Holiday> _holidays;
 
-        public PaymentDateCalculator(DateTime dateTime, List<Holiday> holidays = null)
+        public PaymentDateCalculator(DateTime dateTime, IEnumerable<Holiday> holidays = null)
         {
             _currentDateTime = dateTime;
             _holidays = holidays ?? new List<Holiday>();

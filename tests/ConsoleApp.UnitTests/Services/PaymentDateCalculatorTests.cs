@@ -22,7 +22,7 @@ namespace ConsoleApp.UnitTests.Services
         public void Should_Pass_All_TestData_CalculateNextSalaryDate
         (
             DateTime currentDate,
-            List<Holiday> holidays,
+            IEnumerable<Holiday> holidays,
             Enums.SalaryFrequency salaryFrequency,
             int day,
             DateTime expectedDate

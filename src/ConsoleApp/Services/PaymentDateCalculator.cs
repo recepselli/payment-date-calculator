@@ -64,7 +64,19 @@ namespace ConsoleApp.Services
 
         private DateTime GetDayBeforeLastWorkingDay()
         {
-            return GetWorkingDayOfMonth(_currentDateTime.Year, _currentDateTime.Month).AsEnumerable().Reverse().Skip(1).First();
+            var workingDays = GetWorkingDayOfMonth(_currentDateTime.Year, _currentDateTime.Month).ToList();
+            var dayBeforeLast = workingDays[^2];
+
+            if (_currentDateTime.Date >= dayBeforeLast.Date)
+            {
+                int nextYear = _currentDateTime.Month == 12 ? _currentDateTime.Year + 1 : _currentDateTime.Year;
+                int nextMonth = _currentDateTime.Month == 12 ? 1 : _currentDateTime.Month + 1;
+
+                workingDays = GetWorkingDayOfMonth(nextYear, nextMonth).ToList();
+                dayBeforeLast = workingDays[^2];
+            }
+
+            return dayBeforeLast;
         }
 
         private DateTime GetFirstXDay(int day)

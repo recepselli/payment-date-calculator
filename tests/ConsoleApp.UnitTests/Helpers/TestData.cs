@@ -38,7 +38,7 @@ namespace ConsoleApp.UnitTests.Helpers
         {
             new object[] {new DateTime(2017, 6, 8), GetHolidays(), Enums.SalaryFrequency.DayBeforeLastWorkingDay, 0, new DateTime(2017, 6, 29)},
             new object[] {new DateTime(2017, 9, 20), GetHolidays(), Enums.SalaryFrequency.DayBeforeLastWorkingDay, 0, new DateTime(2017, 9, 27)},
-            new object[] {new DateTime(2020, 12, 31), GetHolidays(), Enums.SalaryFrequency.DayBeforeLastWorkingDay, 0, new DateTime(2020, 12, 30)}
+            new object[] {new DateTime(2020, 12, 31), GetHolidays(), Enums.SalaryFrequency.DayBeforeLastWorkingDay, 0, new DateTime(2021, 1, 28)}
         };
 
         public static readonly object[][] LastWorkingDayOfMonthData =
